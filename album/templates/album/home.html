@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="page-header">Image</h1>
+
+ <!-- effects -->
+
+
+<div class="jumbotron">
+  <div class="row">
+
+        <!--primary column-->
+          <div class="col-md-8"    style="width:-webkit-fill-available;" >
+            <div class="box-container">
+                <div class="canvas" >
+                      <div class="row">
+                      {% for photo in photos %}
+                           <center>
+<!--                               <a href="{{ photo.file.url }}" download>-->
+                                   <img src="{{ photo.file.url }}" class="img-responsive" id="download">
+<!--                               </a>-->
+
+                           </center>
+                      {% endfor %}
+                      </div>
+                </div>
+                    <div class="container1">
+                         {%for effect in effects %}
+                        <button class="btn" type="submit" onclick="location.href='/{{effect}}';">
+                                <img src="../static/image/thumbnails/{{effect}}.PNG">
+                        </button>  {% endfor %}
+
+                        <button type="submit"  class="btn" style="float: right;" onclick="location.href='/delete';">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+
+                        <button class="btn" style="float: right; margin-left: 3px; margin-right: 3px;" onclick="location.href='/save';">
+                            <span class="glyphicon glyphicon-download-alt" >
+                            </span>
+                        </button>
+                  </div>
+            </div>
+          </div>
+
+      <!--second column-->
+<!--        <div class="col-md-4">-->
+
+<!--                <div class="tab">-->
+<!--&lt;!&ndash;                    <button type="submit" onclick="location.href='{% url 'rotate' %}'">Rotate</button>&ndash;&gt;-->
+<!--                    <button class="tablinks" onclick="openCity(event, 'rotate')">rotate</button>-->
+<!--                    <button class="tablinks" onclick="openCity(event, 'filter')">filter</button>-->
+<!--                    <button class="tablinks" onclick="openCity(event, 'color')">color</button>-->
+
+<!--                </div>-->
+<!--            <div class="tab">-->
+<!--                            {%include 'effects.html' %}-->
+<!--                    </div>-->
+
+<!--                <div id="rotate" class="tabcontent">-->
+<!--                        <center>-->
+<!--                            <div id="box" class="row">-->
+
+<!--                                <div class="column">-->
+<!--                                    {% for photo in photos %}-->
+<!--&lt;!&ndash;                                        <img src="../album/static/image/filter1.jpg"  onclick="document.getElementById('canvas').src='{{ photo.file.url }}'" >&ndash;&gt;-->
+<!--                                        <img src="{{ photo.file.url }}"  onclick="document.getElementById('canvas').src='{{ photo.file.url }}'" >-->
+<!--                                     {% endfor %}-->
+<!--                                </div>-->
+
+<!--                            </div>-->
+<!--                        </center>-->
+<!--                    </div>-->
+
+<!--                <div id="filter" class="tabcontent">-->
+<!--                    <center>-->
+<!--                        <div id="box" class="row">-->
+
+<!--                            <div class="column">-->
+<!--                                <img src="../../static/app/images/filter1.jpg"  onclick="document.getElementById('canvas').src='../static/app/images/filter1.jpg'" >-->
+<!--                            </div>-->
+
+<!--                        </div>-->
+<!--                    </center>-->
+<!--                </div>-->
+
+<!--                <div id="color" class="tabcontent">-->
+<!--                    <div id="box">-->
+<!--                       <center> <img src="../../static/app/images/180.jpg"  onclick="document.getElementById('canvas').src='../static/app/images/180.jpg'" ></center>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--        </div>-->
+     </div>
+</div>
+
+<style>
+
+.canvas {
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px #000000;
+    background: darkgray;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#box {
+
+    width:auto;
+    height: 16em;
+    margin: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color:#ccc;
+    padding:10px;
+}
+
+.container1 {
+  position: relative;
+  width: 100%;
+  top: 12px;
+}
+.container1 img {
+  width: 100%;
+  height: auto;
+}
+
+.container1 .btn {
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  width: 4%;
+  height:auto%;
+}
+.container1 .btn:hover {
+  background-color: black;
+}
+</style>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+function Download() {
+
+    var download = document.getElementById("download").src;
+    var node = document.createElement('a');
+
+        // Set the href property.
+        node.href = download;
+        //node.download = download;
+
+        // Append the anchor element to the body.
+        document.getElementById("save").appendChild(node);
+
+}
+
+</script>
+
+
+{% endblock %}
