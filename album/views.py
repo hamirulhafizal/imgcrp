@@ -44,7 +44,6 @@ def rotate(request):
     # print(photos)
 
     myObj = Photo.objects.last()
-
     image_path = myObj.file.path
 
     img = Image.open(image_path)
@@ -52,6 +51,7 @@ def rotate(request):
     img_90.save(image_path)
 
     return redirect('effects')
+
     # return redirect('home')
 
 # class Effects(TemplateView):

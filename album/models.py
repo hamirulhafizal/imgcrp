@@ -7,5 +7,6 @@ class Photo(models.Model):
     file = models.ImageField()
 
     class Meta:
+        
         verbose_name = 'photo'
         verbose_name_plural = 'photos'

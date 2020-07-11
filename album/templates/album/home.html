@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1 class="page-header">Image</h1>
 
  <!-- effects -->
 
@@ -16,10 +15,8 @@
                       <div class="row">
                       {% for photo in photos %}
                            <center>
-<!--                               <a href="{{ photo.file.url }}" download>-->
+<!--                              <a href="{{ photo.file.url }}" download="{{ photo.file.url }}">-->
                                    <img src="{{ photo.file.url }}" class="img-responsive" id="download">
-<!--                               </a>-->
-
                            </center>
                       {% endfor %}
                       </div>
@@ -42,53 +39,6 @@
             </div>
           </div>
 
-      <!--second column-->
-<!--        <div class="col-md-4">-->
-
-<!--                <div class="tab">-->
-<!--&lt;!&ndash;                    <button type="submit" onclick="location.href='{% url 'rotate' %}'">Rotate</button>&ndash;&gt;-->
-<!--                    <button class="tablinks" onclick="openCity(event, 'rotate')">rotate</button>-->
-<!--                    <button class="tablinks" onclick="openCity(event, 'filter')">filter</button>-->
-<!--                    <button class="tablinks" onclick="openCity(event, 'color')">color</button>-->
-
-<!--                </div>-->
-<!--            <div class="tab">-->
-<!--                            {%include 'effects.html' %}-->
-<!--                    </div>-->
-
-<!--                <div id="rotate" class="tabcontent">-->
-<!--                        <center>-->
-<!--                            <div id="box" class="row">-->
-
-<!--                                <div class="column">-->
-<!--                                    {% for photo in photos %}-->
-<!--&lt;!&ndash;                                        <img src="../album/static/image/filter1.jpg"  onclick="document.getElementById('canvas').src='{{ photo.file.url }}'" >&ndash;&gt;-->
-<!--                                        <img src="{{ photo.file.url }}"  onclick="document.getElementById('canvas').src='{{ photo.file.url }}'" >-->
-<!--                                     {% endfor %}-->
-<!--                                </div>-->
-
-<!--                            </div>-->
-<!--                        </center>-->
-<!--                    </div>-->
-
-<!--                <div id="filter" class="tabcontent">-->
-<!--                    <center>-->
-<!--                        <div id="box" class="row">-->
-
-<!--                            <div class="column">-->
-<!--                                <img src="../../static/app/images/filter1.jpg"  onclick="document.getElementById('canvas').src='../static/app/images/filter1.jpg'" >-->
-<!--                            </div>-->
-
-<!--                        </div>-->
-<!--                    </center>-->
-<!--                </div>-->
-
-<!--                <div id="color" class="tabcontent">-->
-<!--                    <div id="box">-->
-<!--                       <center> <img src="../../static/app/images/180.jpg"  onclick="document.getElementById('canvas').src='../static/app/images/180.jpg'" ></center>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--        </div>-->
      </div>
 </div>
 

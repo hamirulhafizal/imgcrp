@@ -18,7 +18,6 @@ def home(request):
 
 
 def rotate_cw(request):
-
     # photos = Photo.file.path
     # print(photos)
 
@@ -29,13 +28,12 @@ def rotate_cw(request):
     img = Image.open(image_path)
     out = img.rotate(-90)
     # out = img.transpose(PIL.Image.ROTATE_90)
-    out.save(image_path)
+    out.save(image_path, "PNG")
 
     return redirect('effects')
 
 
 def rotate_acw(request):
-
     myObj = Photo.objects.last()
     image_path = myObj.file.path
     img = Image.open(image_path)
@@ -46,7 +44,6 @@ def rotate_acw(request):
 
 
 def flip_left_right(request):
-
     # photos = Photo.file.path
     # print(photos)
 
@@ -62,7 +59,6 @@ def flip_left_right(request):
 
 
 def flip_top_bottom(request):
-
     # photos = Photo.file.path
     # print(photos)
 
@@ -76,7 +72,6 @@ def flip_top_bottom(request):
 
 
 def image_transerve(request):
-
     # photos = Photo.file.path
     # print(photos)
 
@@ -90,7 +85,6 @@ def image_transerve(request):
 
 
 def resize_minus(request):
-
     myObj = Photo.objects.last()
     image_path = myObj.file.path
     img = Image.open(image_path)
@@ -112,7 +106,6 @@ def resize_minus(request):
 
 
 def resize_plus(request):
-
     myObj = Photo.objects.last()
     image_path = myObj.file.path
     img = Image.open(image_path)
@@ -134,7 +127,6 @@ def resize_plus(request):
 
 
 def brightness(request):
-
     myObj = Photo.objects.last()
     image_path = myObj.file.path
     img = Image.open(image_path)
@@ -150,7 +142,6 @@ def brightness(request):
 
 
 def darkness(request):
-
     myObj = Photo.objects.last()
     image_path = myObj.file.path
     img = Image.open(image_path)
@@ -166,7 +157,6 @@ def darkness(request):
 
 
 def blurness(request):
-
     myObj = Photo.objects.last()
     image_path = myObj.file.path
     img = Image.open(image_path)
@@ -182,7 +172,6 @@ def blurness(request):
 
 
 def sharpness(request):
-
     myObj = Photo.objects.last()
     image_path = myObj.file.path
     img = Image.open(image_path)
@@ -198,7 +187,6 @@ def sharpness(request):
 
 
 def grayscale(request):
-
     myObj = Photo.objects.last()
     image_path = myObj.file.path
     img = Image.open(image_path)
@@ -210,7 +198,6 @@ def grayscale(request):
 
 
 def postarize(request):
-
     myObj = Photo.objects.last()
     image_path = myObj.file.path
     img = Image.open(image_path)
@@ -223,7 +210,6 @@ def postarize(request):
 
 
 def filter(request):
-
     myObj = Photo.objects.last()
     image_path = myObj.file.path
     img = Image.open(image_path)
@@ -236,7 +222,6 @@ def filter(request):
 
 
 def edges(request):
-
     myObj = Photo.objects.last()
     image_path = myObj.file.path
     img = Image.open(image_path)
@@ -273,8 +258,6 @@ def save(request):
         return redirect('effects')
     else:
         myObj.save()
-
-        urllib.request.urlretrieve(image_path, image_name)
         return redirect('effects')
 
 
