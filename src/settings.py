@@ -26,7 +26,6 @@ SECRET_KEY = 'i%06y2q&4l-!nv*8oolv470b!o)!xg*^9f7^d=q10#b$wd%c_e'
 DEBUG = True
 
 ALLOWED_HOSTS = ['imgpy.herokuapp.com', '127.0.0.1']
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -103,7 +102,11 @@ USE_TZ = True
 # STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+<<<<<<< HEAD
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+=======
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+>>>>>>> f8c44c2ca4e6aea8136fa968d390b41e4fa2ca65
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
