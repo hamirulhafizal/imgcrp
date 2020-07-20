@@ -13,25 +13,35 @@
             <div class="box-container">
                 <div class="canvas" >
                       <div class="row">
-                      {% for photo in photos %}
+                          {% for x in img1 %}
                            <center>
-<!--                              <a href="{{ photo.file.url }}" download="{{ photo.file.url }}">-->
-                                   <img src="{{ photo.file.url }}" class="img-responsive" id="download">
+                                <img src="{{ x.file.url }}" class="img-responsive" id="download">
                            </center>
-                      {% endfor %}
+                           {% endfor %}
                       </div>
                 </div>
                     <div class="container1">
                          {%for effect in effects %}
-                        <button class="btn" type="submit" onclick="location.href='/{{effect}}';">
-                                <img src="../static/image/thumbnails/{{effect}}.PNG">
-                        </button>  {% endfor %}
+                        <button class="btn" type="submit" onclick="location.href='/{{effect}}/{{ pk }}';">
+                                <img src="/static/image/thumbnails/{{effect}}.PNG">
+                        </button>
+                            {% endfor %}
+                        <button type="submit"  class="btn" style="float: right;">
 
-                        <button type="submit"  class="btn" style="float: right;" onclick="location.href='/delete';">
-                        <span class="glyphicon glyphicon-trash"></span>
+                            {%for effect in effects %}
+                                <a href="/delete/{{ pk }}">
+                               {% endfor %}
+
+
+                            <span class="glyphicon glyphicon-trash"></span>
                         </button>
 
-                        <button class="btn" style="float: right; margin-left: 3px; margin-right: 3px;" onclick="location.href='/save';">
+                        <button class="btn" style="float: right; margin-left: 3px; margin-right: 3px;">
+
+                            {% for x in img1 %}
+                                <a href="{{ x.file.url }}" download>
+                           {% endfor %}
+
                             <span class="glyphicon glyphicon-download-alt" >
                             </span>
                         </button>

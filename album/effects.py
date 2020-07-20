@@ -7,88 +7,78 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from .models import Photo
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView, RedirectView
+
+from django.shortcuts import get_object_or_404
+
+from django.urls import reverse
+
 
 def home(request):
-    photos = Photo.objects.all()
-
-    myObj = Photo.objects.last()
-    image_path = myObj.file.path
-
-    return render(request, 'album/home.html', {'photos': photos})
+    return redirect('photo_list')
 
 
-def rotate_cw(request):
-    # photos = Photo.file.path
-    # print(photos)
-
-    myObj = Photo.objects.last()
-
+def rotate_cw(requests, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
 
     img = Image.open(image_path)
     out = img.rotate(-90)
-    # out = img.transpose(PIL.Image.ROTATE_90)
     out.save(image_path, "PNG")
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def rotate_acw(request):
-    myObj = Photo.objects.last()
+def rotate_acw(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
+
     img = Image.open(image_path)
     out = img.rotate(90)
-    out.save(image_path)
+    out.save(image_path, "PNG")
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def flip_left_right(request):
-    # photos = Photo.file.path
-    # print(photos)
-
-    myObj = Photo.objects.last()
-
+def flip_left_right(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
 
     img = Image.open(image_path)
     out = img.transpose(PIL.Image.FLIP_LEFT_RIGHT)
-    out.save(image_path)
+    out.save(image_path, "PNG")
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def flip_top_bottom(request):
-    # photos = Photo.file.path
-    # print(photos)
-
-    myObj = Photo.objects.last()
+def flip_top_bottom(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
+
     img = Image.open(image_path)
     out = img.transpose(PIL.Image.FLIP_TOP_BOTTOM)
-    out.save(image_path)
+    out.save(image_path, "PNG")
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def image_transerve(request):
-    # photos = Photo.file.path
-    # print(photos)
-
-    myObj = Photo.objects.last()
+def image_transerve(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
+
     img = Image.open(image_path)
     out = img.transpose(PIL.Image.TRANSVERSE)
-    out.save(image_path)
+    out.save(image_path, "PNG")
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def resize_minus(request):
-    myObj = Photo.objects.last()
+def resize_minus(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
-    img = Image.open(image_path)
 
+    img = Image.open(image_path)
     width = img.size[0]
     height = img.size[1]
 
@@ -102,14 +92,14 @@ def resize_minus(request):
     # save resized image
     out.save(image_path, quality=95)
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def resize_plus(request):
-    myObj = Photo.objects.last()
+def resize_plus(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
-    img = Image.open(image_path)
 
+    img = Image.open(image_path)
     width = img.size[0]
     height = img.size[1]
 
@@ -123,12 +113,13 @@ def resize_plus(request):
     # save resized image
     out.save(image_path, quality=95)
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def brightness(request):
-    myObj = Photo.objects.last()
+def brightness(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
+
     img = Image.open(image_path)
 
     # image brightness enhancer
@@ -138,12 +129,13 @@ def brightness(request):
     out = enhancer.enhance(factor)
     out.save(image_path)
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def darkness(request):
-    myObj = Photo.objects.last()
+def darkness(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
+
     img = Image.open(image_path)
 
     # image brightness enhancer
@@ -153,52 +145,54 @@ def darkness(request):
     out = enhancer.enhance(factor)
     out.save(image_path)
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def blurness(request):
-    myObj = Photo.objects.last()
+def blurness(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
+
     img = Image.open(image_path)
 
     # image brightness enhancer
-    enhancer = ImageEnhance.Sharpness(img)
+    enhancer = ImageEnhance.Brightness(img)
 
     factor = 0.05  # gives original image
     out = enhancer.enhance(factor)
     out.save(image_path)
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def sharpness(request):
-    myObj = Photo.objects.last()
+def sharpness(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
+
     img = Image.open(image_path)
 
     # image brightness enhancer
-    enhancer = ImageEnhance.Sharpness(img)
+    enhancer = ImageEnhance.Brightness(img)
 
     factor = 2  # gives original image
     out = enhancer.enhance(factor)
     out.save(image_path)
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def grayscale(request):
-    myObj = Photo.objects.last()
+def grayscale(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
     img = Image.open(image_path)
 
     out = ImageOps.grayscale(img)
     out.save(image_path)
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def postarize(request):
-    myObj = Photo.objects.last()
+def postarize(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
     img = Image.open(image_path)
 
@@ -206,11 +200,11 @@ def postarize(request):
     out = ImageOps.posterize(img, 2)
     out.save(image_path)
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def filter(request):
-    myObj = Photo.objects.last()
+def filter(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
     img = Image.open(image_path)
 
@@ -218,11 +212,11 @@ def filter(request):
     out = img.filter(ImageFilter.RankFilter(size=3, rank=3 * 3 - 1))
     out.save(image_path)
 
-    return redirect('effects')
+    return redirect('effects', id_image)
 
 
-def edges(request):
-    myObj = Photo.objects.last()
+def edges(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
     image_path = myObj.file.path
     img = Image.open(image_path)
 
@@ -235,12 +229,11 @@ def edges(request):
 
     # Saving the Image Under the name Edge_Sample.png
     out.save(image_path)
+    return redirect('effects', id_image)
 
-    return redirect('effects')
 
-
-def delete(request):
-    myObj = Photo.objects.last()
+def delete_id(request, id_image):
+    myObj = Photo.objects.get(pk=id_image)
 
     if myObj is None:
         return redirect('effects')
@@ -249,26 +242,32 @@ def delete(request):
         return redirect('photo_list')
 
 
-def save(request):
-    myObj = Photo.objects.last()
-    image_path = myObj.file.path
-    image_name = myObj.file.name
+def dlt(request):
+    myObj = Photo.objects.all()
 
     if myObj is None:
         return redirect('effects')
     else:
-        myObj.save()
-        return redirect('effects')
+        myObj.delete()
+        return redirect('photo_list')
 
 
-class Effects(View):
+class Effects(LoginRequiredMixin, TemplateView, RedirectView):
+    login_url = '/login/'
+    redirect_field_name = 'effects'
+    raise_exception = True
+
     """Return the available effects."""
 
-    def get(self, requests):
-        """Return all the effects available."""
+    templates = 'album/home.html'
 
-        templates = 'album/home.html'
-        photos = Photo.objects.all()
+    def get(self, request, id_image):
+        if not request.user.is_authenticated:
+            return render(request, 'registrarion/login_error.html')
+        img1 = Photo.objects.filter(pk=id_image)
+        pk = id_image
+
+        """Return all the effects available."""
 
         effects = {
             "rotate_cw": rotate_cw,
@@ -288,6 +287,4 @@ class Effects(View):
             "edges": edges,
         }
 
-        return render(requests, templates, {'effects': effects, 'photos': photos})
-
-# Create list  to handle respective effects
+        return render(request, self.templates, {'img1': img1, 'effects': effects, 'pk': pk})

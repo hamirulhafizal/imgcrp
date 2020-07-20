@@ -63,11 +63,12 @@
   <h1 class="page-header">Album</h1>
 
   <!-- FORM TO UPLOAD THE IMAGES -->
+<div class="jumbotron">
   <form method="post" enctype="multipart/form-data" id="formUpload">
     {% csrf_token %}
     {{ form }}
 
-    <button type="submit"  class="btn" style="float: right;" onclick="location.href='/delete';">
+    <button type="submit"  class="btn" style="float: right;" onclick="location.href='/dlt';">
         <span class="glyphicon glyphicon-trash"></span>
    </button>
   </form>
@@ -103,12 +104,25 @@
 
   <!-- CONTAINER TO DISPLAY THE CROPPED IMAGES -->
   <div class="row" style="margin-top: 20px">
-    {% for photo in photos %}
-      <div class="col-sm-4 col-md-3">
-        <img src="{{ photo.file.url }}" class="thumbnail">
+    {% for photo in photos.all %}
+      <div class="col-sm-4 col-md-3" style="width: auto;">
+<!--        <a href="../effects/{{ photo.pk }}">-->
+          <img src="{{ photo.file.url }}" class="thumbnail">
+          <button class="btn">
+          <a href="../effects/{{ photo.pk }}">
+            Upload
+          </a>
+          </button>
+          <button class="btn">
+          <a href="../delete/{{ photo.pk }}">
+            Delete
+          </a>
+          </button>
+
       </div>
+
     {% endfor %}
   </div>
-
+</div>
 {% endblock %}
 

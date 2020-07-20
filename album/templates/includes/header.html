@@ -8,12 +8,13 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="{% url 'photo_list' %}">ImgPy</a>
-      <a class="navbar-brand" href="{% url 'effects' %}">Effects</a>
       <a class="navbar-brand" href="{% url 'compare' %}">Compare</a>
     </div>
     <div class="collapse navbar-collapse" id="main-menu">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://hamirulhafizal.com">hamirulhafizal.com</a></li>
+        <li><a href="{% url 'login' %}">login</a></li>
+        <li><a href="{% url 'logout' %}">logout</a></li>
       </ul>
     </div>
   </div>
