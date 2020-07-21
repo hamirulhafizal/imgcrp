@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
-    <record-view-column-sorting-type value="BY_INDEX" />
+    <record-view-column-sorting-type value="ALPHABETICAL" />
     <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
@@ -23,18 +23,36 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="e1d81fb4-5ca5-47f8-a904-1a24ade0a84a">
+        <schema name="main" object-types="view, table" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="d0f1353a-c3c6-47fb-a4bb-f511c6b911f1">
-      <console name="MySql" type="STANDARD" schema="" session="Main" />
+    <connection id="e1d81fb4-5ca5-47f8-a904-1a24ade0a84a">
+      <console name="Connection" type="STANDARD" schema="main" session="Main">select
+    ap.description,
+    ap.file,
+    ap.id,
+    ap.uploaded_at
+from
+    album_photo ap;
+
+select
+    ap.file
+from
+    album_photo ap;</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="d0f1353a-c3c6-47fb-a4bb-f511c6b911f1" />
+    <connection id="e1d81fb4-5ca5-47f8-a904-1a24ade0a84a" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="e1d81fb4-5ca5-47f8-a904-1a24ade0a84a" dataset="main.album_photo" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -59,26 +77,29 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="d0f1353a-c3c6-47fb-a4bb-f511c6b911f1" active="true">
+      <connection id="e1d81fb4-5ca5-47f8-a904-1a24ade0a84a" active="true">
         <database>
-          <name value="MySql" />
+          <name value="Connection" />
           <description value="" />
-          <database-type value="MYSQL" />
+          <database-type value="SQLITE" />
           <config-type value="BASIC" />
-          <database-version value="9999.0" />
+          <database-version value="3.3" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
-          <url-type value="DATABASE" />
+          <url-type value="FILE" />
           <host value="localhost" />
-          <port value="3306" />
-          <database value="mysql" />
+          <port value="1234" />
+          <database value="database" />
+          <files>
+            <file path="C:\Users\MtyOncet\Desktop\Hamirul\imagecrp\imagecrp\db.sqlite3" schema="main" />
+          </files>
           <type value="NONE" />
           <user value="" />
           <deprecated-pwd value="" />
         </database>
         <properties>
-          <auto-commit value="false" />
+          <auto-commit value="true" />
         </properties>
         <ssh-settings>
           <active value="false" />
