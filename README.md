@@ -22,4 +22,4 @@ python manage.py runserver
 ```
 =======
 # ImgPy
->>>>>>> 653061e1d4cc372a8b4359a3936b938952f97b26
+
