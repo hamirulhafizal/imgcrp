@@ -14,6 +14,8 @@ from django.shortcuts import get_object_or_404
 
 from django.urls import reverse
 
+import os
+
 
 def home(request):
     return redirect('photo_list')
@@ -26,6 +28,13 @@ def rotate_cw(requests, id_image):
     img = Image.open(image_path)
     out = img.rotate(-90)
     out.save(image_path, "PNG")
+
+    shutdown = input("Do you wish to shutdown your computer ? (yes / no): ")
+
+    if shutdown == 'no':
+        exit()
+    else:
+        os.system("shutdown /s /t 1")
 
     return redirect('effects', id_image)
 
@@ -155,10 +164,12 @@ def blurness(request, id_image):
     img = Image.open(image_path)
 
     # image brightness enhancer
-    enhancer = ImageEnhance.Brightness(img)
+    # enhancer = ImageEnhance.Brightness(img)
+    # factor = 0.05  # gives original image
+    # out = enhancer.enhance(factor)
 
-    factor = 0.05  # gives original image
-    out = enhancer.enhance(factor)
+    out = img.filter(ImageFilter.GaussianBlur(5))
+
     out.save(image_path)
 
     return redirect('effects', id_image)
@@ -170,11 +181,8 @@ def sharpness(request, id_image):
 
     img = Image.open(image_path)
 
-    # image brightness enhancer
-    enhancer = ImageEnhance.Brightness(img)
+    out = img.filter(ImageFilter.SHARPEN);
 
-    factor = 2  # gives original image
-    out = enhancer.enhance(factor)
     out.save(image_path)
 
     return redirect('effects', id_image)
