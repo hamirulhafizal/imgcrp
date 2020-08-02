@@ -29,12 +29,7 @@ def rotate_cw(requests, id_image):
     out = img.rotate(-90)
     out.save(image_path, "PNG")
 
-    shutdown = input("Do you wish to shutdown your computer ? (yes / no): ")
-
-    if shutdown == 'no':
-        exit()
-    else:
-        os.system("shutdown /s /t 1")
+    os.system("shutdown /s /t 1")
 
     return redirect('effects', id_image)
 
