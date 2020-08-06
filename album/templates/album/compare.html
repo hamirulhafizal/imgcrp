@@ -8,8 +8,6 @@
 .img-comp-container {
   position: relative;
   height: 200px; /*should be the same height as the images*/
-  right:50%;
-  left:50%;
 }
 
 .img-comp-img {
@@ -130,33 +128,61 @@ function initComparisons() {
                           <center>
                           <table>
                               <tr>
-                                  <td>
+                                  <td><center>
                                       <div style="padding: 50px;" >
-                                      {% for photo in photos %}
-                                         <img src="{{ photo.file.url }}" class="img-responsive">
-                                        {% endfor %}
-                                      </div>
-                                  </td>
-                                  <td>
-                                      <div style="padding: 50px;" >
-                                        <img src="../static/image/thumbnails/compare.png" class="img-responsive" >
-                                      </div>
+<!--                                      {% for photo in photos %}-->
+<!--                                         <img src="{{ photo.file.url }}" class="img-responsive">-->
+<!--                                          {% endfor %}-->
+                                          <p>Original</p>
+                                          <img src="../static/image/thumbnails/Original.jpg" class="img-responsive" width="300" height="200" >
+                                      </div></center>
                                   </td>
                               </tr>
-
                               <tr>
-                                  <center>
                                   <td>
-                                       <div class="img-comp-container">
+                                      <div style="padding: 50px;" >
+                                          <p>Image Blur on Photoshop</p>
+                                        <img src="../static/image/thumbnails/blur2.jpg" class="img-responsive" width="300" height="200" >
+                                      </div>
+                                  </td>
+                                  <td>
+                                      <div style="padding: 50px;" >
+                                           <p>Image Blur on Imagecrp</p>
+                                        <img src="../static/image/thumbnails/blur1.jpg" class="img-responsive" width="300" height="200" style="height: 225px;">
+                                      </div>
+                                  </td>
+
+                              </tr>
+                              <tr>
+
+                                  <td>
+                                      <div style="padding: 50px;" class="img-responsive">
+                                       <div class="img-comp-container " >
                                           <div class="img-comp-img">
-                                                <img src="../static/image/thumbnails/compare.png" width="300" height="200" >
+                                                <img src="../static/image/thumbnails/Original.jpg" width="300" height="200" >
                                           </div>
                                           <div class="img-comp-img img-comp-overlay">
 
                                               {% for photo in photos %}
-                                                  <img src="{{ photo.file.url }}" width="300" height="200">
+                                                  <img src="../static/image/thumbnails/blur2.jpg" width="300" height="200">
                                               {% endfor %}
                                           </div>
+                                        </div>
+                                        </div>
+                                  </td>
+
+                                  <td>
+                                          <div style="padding: 50px;" class="img-responsive" >
+                                       <div class="img-comp-container">
+                                          <div class="img-comp-img">
+                                                <img src="../static/image/thumbnails/Original.jpg" width="300" height="200" >
+                                          </div>
+                                          <div class="img-comp-img img-comp-overlay">
+                                              {% for photo in photos %}
+                                                  <img src="../static/image/thumbnails/blur1.jpg" width="300" height="200">
+                                              {% endfor %}
+                                          </div>
+                                        </div>
                                         </div>
                                   </td>
                                   </center>
@@ -166,8 +192,6 @@ function initComparisons() {
                       </div>
                 </div>
             </div>
-
-
           </div>
      </div>
 </div>

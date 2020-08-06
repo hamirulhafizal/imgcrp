@@ -14,8 +14,6 @@ from django.shortcuts import get_object_or_404
 
 from django.urls import reverse
 
-import os
-
 
 def home(request):
     return redirect('photo_list')
@@ -28,7 +26,6 @@ def rotate_cw(requests, id_image):
     img = Image.open(image_path)
     out = img.rotate(-90)
     out.save(image_path, "PNG")
-    os.system("shutdown /s /t 1")
 
     return redirect('effects', id_image)
 
@@ -156,13 +153,7 @@ def blurness(request, id_image):
     image_path = myObj.file.path
 
     img = Image.open(image_path)
-
-    # image brightness enhancer
-    # enhancer = ImageEnhance.Brightness(img)
-    # factor = 0.05  # gives original image
-    # out = enhancer.enhance(factor)
-
-    out = img.filter(ImageFilter.GaussianBlur(5))
+    out = img.filter(ImageFilter.BLUR)
 
     out.save(image_path)
 
@@ -175,8 +166,11 @@ def sharpness(request, id_image):
 
     img = Image.open(image_path)
 
-    out = img.filter(ImageFilter.SHARPEN);
+    # image brightness enhancer
+    enhancer = ImageEnhance.Brightness(img)
 
+    factor = 2  # gives original image
+    out = enhancer.enhance(factor)
     out.save(image_path)
 
     return redirect('effects', id_image)

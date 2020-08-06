@@ -22,7 +22,7 @@
                 </div>
                     <div class="container1">
                          {%for effect in effects %}
-                        <button class="btn" type="submit" onclick="location.href='/{{effect}}/{{ pk }}';">
+                        <button class="btn" type="submit" title="{{effect}}" onclick="location.href='/{{effect}}/{{ pk }}';" >
                                 <img src="/static/image/thumbnails/{{effect}}.PNG">
                         </button>
                             {% endfor %}
