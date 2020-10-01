@@ -1,12 +1,17 @@
 <<<<<<< HEAD
 # Django Simple Image Crop
 
-Example used in the blog post [How to Crop Images in a Django Application](https://simpleisbetterthancomplex.com/tutorial/2017/03/02/how-to-crop-images-in-a-django-application.html)
+https://imagecrp.herokuapp.com
+
+login
+
+username : admin
+password : admin
 
 ## Running Locally
 
 ```bash
-git clone https://github.com/sibtc/simple-image-crop.git
+git clone https://github.com/hamirulhafizal/imagecrp.git
 ```
 
 ```bash
