@@ -65,7 +65,7 @@ pbr==1.8.1
 pexpect==4.0.1
 pickleshare==0.6
 pilkit==2.0
-Pillow==7.1.2
+Pillow==8.2.0
 prompt-toolkit==3.0.5
 ptyprocess==0.5.1
 Pygments==2.6.1
